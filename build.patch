@@ -1,0 +1,12 @@
+--- tbb43_20150424oss/Makefile.org	2015-04-30 10:27:46.550412315 -0400
++++ tbb43_20150424oss/Makefile	2015-04-30 10:28:24.162942094 -0400
+@@ -78,3 +78,9 @@
+ 	@echo runtime=$(runtime)
+ 	@echo tbb_build_prefix=$(tbb_build_prefix)
+ 
++install:
++	mkdir -p $(DESTDIR)/usr/lib64
++	mkdir -p $(DESTDIR)/usr/include
++	cp -a build/linux_intel64_*_release/*.so*  $(DESTDIR)/usr/lib64
++	cp -a include/serial $(DESTDIR)/usr/include/
++	cp -a include/tbb $(DESTDIR)/usr/include/
