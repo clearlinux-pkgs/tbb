@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 43_20150424oss_src
-Release  : 6
+Release  : 7
 URL      : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb43_20150424oss_src.tgz
 Source0  : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb43_20150424oss_src.tgz
 Summary  : No detailed summary available
