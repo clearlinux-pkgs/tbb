@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 2017_20161004oss_src
-Release  : 10
+Release  : 11
 URL      : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb2017_20161004oss_src.tgz
 Source0  : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb2017_20161004oss_src.tgz
 Summary  : No detailed summary available
@@ -163,8 +163,12 @@ rm -rf %{buildroot}
 /usr/include/tbb/tbb_thread.h
 /usr/include/tbb/tbbmalloc_proxy.h
 /usr/include/tbb/tick_count.h
-/usr/lib64/*.so
+/usr/lib64/libtbb.so
+/usr/lib64/libtbbmalloc.so
+/usr/lib64/libtbbmalloc_proxy.so
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libtbb.so.2
+/usr/lib64/libtbbmalloc.so.2
+/usr/lib64/libtbbmalloc_proxy.so.2
