@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 2017_20161004oss_src
-Release  : 11
+Release  : 12
 URL      : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb2017_20161004oss_src.tgz
 Source0  : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb2017_20161004oss_src.tgz
 Summary  : No detailed summary available
@@ -47,6 +47,13 @@ lib components for the tbb package.
 
 %build
 export LANG=C
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
 make V=1  %{?_smp_mflags}
 
 %install
