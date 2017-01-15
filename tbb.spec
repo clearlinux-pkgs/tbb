@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 2017_20161128oss_src
-Release  : 15
+Release  : 16
 URL      : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb2017_20161128oss_src.tgz
 Source0  : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb2017_20161128oss_src.tgz
 Summary  : No detailed summary available
@@ -17,6 +17,7 @@ BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
 Patch1: build.patch
+Patch2: timestamp.patch
 
 %description
 See index.html for directions and documentation.
@@ -44,19 +45,22 @@ lib components for the tbb package.
 %prep
 %setup -q -n tbb2017_20161128oss
 %patch1 -p1
+%patch2 -p1
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1484453146
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
 make V=1  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1484453146
 rm -rf %{buildroot}
 %make_install
 

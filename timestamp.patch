@@ -1,0 +1,8 @@
+--- tbb2017_20161128oss/build/version_info_linux.sh~	2017-01-15 04:02:35.000000000 +0000
++++ tbb2017_20161128oss/build/version_info_linux.sh	2017-01-15 04:02:43.874681684 +0000
+@@ -31,4 +31,4 @@
+ echo '#N": BUILD_TARGET'"\t$arch on $runtime"'" ENDL \'
+ echo '#N": BUILD_COMMAND'"\t"$*'" ENDL \'
+ echo ""
+-echo "#define __TBB_DATETIME \""`date -u`"\""
++echo "#define __TBB_DATETIME \""date -u"\""
