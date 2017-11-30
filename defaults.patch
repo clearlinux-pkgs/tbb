@@ -1,15 +1,6 @@
 diff -ru tbb2017_20161128oss/build/linux.gcc.inc tbb2017_20161128oss_modified/build/linux.gcc.inc
 --- tbb2017_20161128oss/build/linux.gcc.inc	2016-11-29 14:24:53.000000000 +0000
-+++ tbb2017_20161128oss_modified/build/linux.gcc.inc	2017-11-30 02:58:22.642266607 +0000
-@@ -36,7 +36,7 @@
- CONLY = gcc
- LIB_LINK_FLAGS = $(DYLIB_KEY) -Wl,-soname=$(BUILDING_LIBRARY)
- LIBS += -lpthread -lrt
--LINK_FLAGS = -Wl,-rpath-link=. -rdynamic
-+LINK_FLAGS = -Wl,-rpath-link=. -rdynamic 
- C_FLAGS = $(CPLUS_FLAGS)
- 
- # gcc 4.2 and higher support OpenMP
++++ tbb2017_20161128oss_modified/build/linux.gcc.inc	2017-11-30 18:20:37.271858410 +0000
 @@ -86,6 +86,7 @@
      ITT_NOTIFY = -DDO_ITT_NOTIFY
      CPLUS_FLAGS += -m64 $(RTM_KEY)

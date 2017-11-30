@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 20161128oss
-Release  : 18
+Release  : 19
 URL      : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb2017_20161128oss_src.tgz
 Source0  : https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb2017_20161128oss_src.tgz
 Summary  : No detailed summary available
@@ -54,7 +54,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1512010954
+export SOURCE_DATE_EPOCH=1512066177
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -65,7 +65,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -f
 make V=1  %{?_smp_mflags} DEFAULTFLAGS="$CFLAGS"
 
 %install
-export SOURCE_DATE_EPOCH=1512010954
+export SOURCE_DATE_EPOCH=1512066177
 rm -rf %{buildroot}
 %make_install
 
