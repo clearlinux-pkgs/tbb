@@ -13,7 +13,7 @@ License  : Apache-2.0
 Requires: tbb-lib
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 Patch1: build.patch
