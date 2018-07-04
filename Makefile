@@ -1,5 +1,5 @@
 PKG_NAME := tbb
-URL = https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb2017_20161128oss_src.tgz
-
+URL = https://github.com/01org/tbb/archive/2018_U5.tar.gz
+ARCHIVES = 
 
 include ../common/Makefile.common
