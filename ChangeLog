@@ -2,6 +2,66 @@
 The list of most significant changes made over time in
 Intel(R) Threading Building Blocks (Intel(R) TBB).
 
+Intel TBB 2019 Update 1
+TBB_INTERFACE_VERSION == 11001
+
+Changes (w.r.t. Intel TBB 2019):
+
+- Doxygen documentation could be built with 'make doxygen' command now.
+
+Changes affecting backward compatibility:
+
+- Enforced 8 byte alignment for tbb::atomic<long long> and
+    tbb::atomic<double>. On IA-32 architecture it may cause layout
+    changes in structures that use these types.
+
+Bugs fixed:
+
+- Fixed an issue with dynamic memory allocation replacement on Windows*
+    occurred for some versions of ucrtbase.dll.
+- Fixed possible deadlock in tbbmalloc cleanup procedure during process
+    shutdown.
+- Fixed usage of std::uncaught_exception() deprecated in C++17
+   (https://github.com/01org/tbb/issues/67).
+- Fixed a crash when a local observer is activated after an arena
+    observer.
+- Fixed compilation of task_group.h by Visual C++* 15.7 with
+    /permissive- option (https://github.com/01org/tbb/issues/53).
+
+------------------------------------------------------------------------
+Intel TBB 2019
+TBB_INTERFACE_VERSION == 11000
+
+Changes (w.r.t. Intel TBB 2018 Update 5):
+
+- Lightweight policy for functional nodes in the flow graph is now
+    a fully supported feature.
+- Reservation support in flow::write_once_node and flow::overwrite_node
+    is now a fully supported feature.
+- Support for Flow Graph Analyzer and improvements for
+    Intel(R) VTune(TM) Amplifier become a regular feature enabled by
+    TBB_USE_THREADING_TOOLS macro.
+- Added support for std::new_handler in the replacement functions for
+    global operator new.
+- Added C++14 constructors to concurrent unordered containers.
+- Added tbb::counting_iterator and tbb::zip_iterator.
+- Fixed multiple -Wextra warnings in TBB source files.
+
+Preview Features:
+
+- Extracting nodes from a flow graph is deprecated and disabled by
+    default. To enable, use TBB_DEPRECATED_FLOW_NODE_EXTRACTION macro.
+
+Changes affecting backward compatibility:
+
+- Due to internal changes in the flow graph classes, recompilation is
+    recommended for all binaries that use the flow graph.
+
+Open-source contributions integrated:
+
+- Added support for OpenBSD by Anthony J. Bentley.
+
+------------------------------------------------------------------------
 Intel TBB 2018 Update 5
 TBB_INTERFACE_VERSION == 10005
 
