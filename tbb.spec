@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 2019.u1
-Release  : 25
+Release  : 26
 URL      : https://github.com/01org/tbb/archive/2019_U1.tar.gz
 Source0  : https://github.com/01org/tbb/archive/2019_U1.tar.gz
 Summary  : No detailed summary available
