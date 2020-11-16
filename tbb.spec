@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 2019.u9
-Release  : 29
+Release  : 30
 URL      : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Source0  : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Summary  : No detailed summary available
@@ -19,19 +19,15 @@ Patch2: timestamp.patch
 Patch3: defaults.patch
 
 %description
-.. contents::
-Introduction
-------------
-Many developers use CMake to manage their development projects, so the Threading Building Blocks (TBB)
-team created the set of CMake modules to simplify integration of the TBB library into a CMake project.
-The modules are available starting from TBB 2017 U7 in `<tbb_root>/cmake <https://github.com/01org/tbb/tree/tbb_2017/cmake>`_.
+See index.html for directions and documentation.
+If source is present (./Makefile and src/ directories),
+type 'gmake' in this directory to build and test.
 
 %package dev
 Summary: dev components for the tbb package.
 Group: Development
 Requires: tbb-lib = %{version}-%{release}
 Provides: tbb-devel = %{version}-%{release}
-Requires: tbb = %{version}-%{release}
 Requires: tbb = %{version}-%{release}
 
 %description dev
@@ -57,6 +53,7 @@ license components for the tbb package.
 
 %prep
 %setup -q -n tbb-2019_U9
+cd %{_builddir}/tbb-2019_U9
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -66,24 +63,23 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570897969
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1605558380
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 make  %{?_smp_mflags}  DEFAULTFLAGS="$CFLAGS"
 
 
 %install
-export SOURCE_DATE_EPOCH=1570897969
+export SOURCE_DATE_EPOCH=1605558380
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tbb
-cp LICENSE %{buildroot}/usr/share/package-licenses/tbb/LICENSE
+cp %{_builddir}/tbb-2019_U9/LICENSE %{buildroot}/usr/share/package-licenses/tbb/7df059597099bb7dcf25d2a9aedfaf4465f72d8d
 %make_install
 
 %files
@@ -224,4 +220,4 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/tbb/LICENSE
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/tbb/LICENSE
+/usr/share/package-licenses/tbb/7df059597099bb7dcf25d2a9aedfaf4465f72d8d
