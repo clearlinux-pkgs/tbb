@@ -1,5 +1,5 @@
 PKG_NAME := tbb
-URL = https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
+URL = https://github.com/01org/tbb/archive/v2021.5.0/tbb-2021.5.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
