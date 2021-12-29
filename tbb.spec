@@ -48,6 +48,7 @@ doc components for the tbb package.
 Summary: lib components for the tbb package.
 Group: Libraries
 Requires: tbb-license = %{version}-%{release}
+Requires: compat-tbb-soname2-lib
 
 %description lib
 lib components for the tbb package.
