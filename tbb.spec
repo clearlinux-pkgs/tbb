@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 2021.5.0
-Release  : 31
+Release  : 32
 URL      : https://github.com/01org/tbb/archive/v2021.5.0/tbb-2021.5.0.tar.gz
 Source0  : https://github.com/01org/tbb/archive/v2021.5.0/tbb-2021.5.0.tar.gz
 Summary  : C++ library for parallel programming on multi-core processors.
