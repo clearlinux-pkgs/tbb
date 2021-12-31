@@ -4,12 +4,13 @@
 #
 Name     : tbb
 Version  : 2019.u9
-Release  : 34
+Release  : 35
 URL      : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Source0  : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
+Requires: tbb-filemap = %{version}-%{release}
 Requires: tbb-lib = %{version}-%{release}
 Requires: tbb-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -34,10 +35,19 @@ Requires: tbb = %{version}-%{release}
 dev components for the tbb package.
 
 
+%package filemap
+Summary: filemap components for the tbb package.
+Group: Default
+
+%description filemap
+filemap components for the tbb package.
+
+
 %package lib
 Summary: lib components for the tbb package.
 Group: Libraries
 Requires: tbb-license = %{version}-%{release}
+Requires: tbb-filemap = %{version}-%{release}
 
 %description lib
 lib components for the tbb package.
@@ -57,13 +67,16 @@ cd %{_builddir}/oneTBB-2019_U9
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+pushd ..
+cp -a oneTBB-2019_U9 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1640909355
+export SOURCE_DATE_EPOCH=1640909629
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -74,13 +87,25 @@ export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=a
 export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
 make  %{?_smp_mflags}  DEFAULTFLAGS="$CFLAGS"
 
+pushd ../buildavx2
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+make  %{?_smp_mflags}  DEFAULTFLAGS="$CFLAGS"
+popd
 
 %install
-export SOURCE_DATE_EPOCH=1640909355
+export SOURCE_DATE_EPOCH=1640909629
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tbb
 cp %{_builddir}/oneTBB-2019_U9/LICENSE %{buildroot}/usr/share/package-licenses/tbb/7df059597099bb7dcf25d2a9aedfaf4465f72d8d
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -212,11 +237,16 @@ cp %{_builddir}/oneTBB-2019_U9/LICENSE %{buildroot}/usr/share/package-licenses/t
 /usr/lib64/libtbbmalloc.so
 /usr/lib64/libtbbmalloc_proxy.so
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-tbb
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libtbb.so.2
 /usr/lib64/libtbbmalloc.so.2
 /usr/lib64/libtbbmalloc_proxy.so.2
+/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
