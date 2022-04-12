@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 2019.u9
-Release  : 37
+Release  : 38
 URL      : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Source0  : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Summary  : No detailed summary available
@@ -18,6 +18,7 @@ BuildRequires : buildreq-distutils3
 Patch1: build.patch
 Patch2: timestamp.patch
 Patch3: defaults.patch
+Patch4: test-and-test-and-set.patch
 
 %description
 See index.html for directions and documentation.
@@ -67,6 +68,7 @@ cd %{_builddir}/oneTBB-2019_U9
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 pushd ..
 cp -a oneTBB-2019_U9 buildavx2
 popd
@@ -76,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1640909629
+export SOURCE_DATE_EPOCH=1649776803
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -97,7 +99,7 @@ make  %{?_smp_mflags}  DEFAULTFLAGS="$CFLAGS"
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1640909629
+export SOURCE_DATE_EPOCH=1649776803
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tbb
 cp %{_builddir}/oneTBB-2019_U9/LICENSE %{buildroot}/usr/share/package-licenses/tbb/7df059597099bb7dcf25d2a9aedfaf4465f72d8d
