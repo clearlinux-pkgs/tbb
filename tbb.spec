@@ -4,13 +4,12 @@
 #
 Name     : tbb
 Version  : 2019.u9
-Release  : 38
+Release  : 39
 URL      : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Source0  : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: tbb-filemap = %{version}-%{release}
 Requires: tbb-lib = %{version}-%{release}
 Requires: tbb-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -36,19 +35,10 @@ Requires: tbb = %{version}-%{release}
 dev components for the tbb package.
 
 
-%package filemap
-Summary: filemap components for the tbb package.
-Group: Default
-
-%description filemap
-filemap components for the tbb package.
-
-
 %package lib
 Summary: lib components for the tbb package.
 Group: Libraries
 Requires: tbb-license = %{version}-%{release}
-Requires: tbb-filemap = %{version}-%{release}
 
 %description lib
 lib components for the tbb package.
@@ -78,15 +68,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1649776803
+export SOURCE_DATE_EPOCH=1656355407
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
 make  %{?_smp_mflags}  DEFAULTFLAGS="$CFLAGS"
 
 pushd ../buildavx2
@@ -99,7 +89,7 @@ make  %{?_smp_mflags}  DEFAULTFLAGS="$CFLAGS"
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1649776803
+export SOURCE_DATE_EPOCH=1656355407
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tbb
 cp %{_builddir}/oneTBB-2019_U9/LICENSE %{buildroot}/usr/share/package-licenses/tbb/7df059597099bb7dcf25d2a9aedfaf4465f72d8d
@@ -107,7 +97,7 @@ pushd ../buildavx2/
 %make_install_v3
 popd
 %make_install
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -239,16 +229,14 @@ popd
 /usr/lib64/libtbbmalloc.so
 /usr/lib64/libtbbmalloc_proxy.so
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-tbb
-
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libtbb.so.2
+/usr/lib64/glibc-hwcaps/x86-64-v3/libtbbmalloc.so.2
+/usr/lib64/glibc-hwcaps/x86-64-v3/libtbbmalloc_proxy.so.2
 /usr/lib64/libtbb.so.2
 /usr/lib64/libtbbmalloc.so.2
 /usr/lib64/libtbbmalloc_proxy.so.2
-/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
