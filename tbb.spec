@@ -4,7 +4,7 @@
 #
 Name     : tbb
 Version  : 2019.u9
-Release  : 42
+Release  : 43
 URL      : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Source0  : https://github.com/01org/tbb/archive/2019_U9/tbb-2019.U9.tar.gz
 Summary  : No detailed summary available
@@ -68,7 +68,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656355407
+export SOURCE_DATE_EPOCH=1662581419
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -89,7 +89,7 @@ make  %{?_smp_mflags}  DEFAULTFLAGS="$CFLAGS"
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1656355407
+export SOURCE_DATE_EPOCH=1662581419
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tbb
 cp %{_builddir}/oneTBB-2019_U9/LICENSE %{buildroot}/usr/share/package-licenses/tbb/7df059597099bb7dcf25d2a9aedfaf4465f72d8d
@@ -225,6 +225,9 @@ popd
 /usr/include/tbb/tbb_thread.h
 /usr/include/tbb/tbbmalloc_proxy.h
 /usr/include/tbb/tick_count.h
+/usr/lib64/glibc-hwcaps/x86-64-v3/libtbb.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libtbbmalloc.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libtbbmalloc_proxy.so
 /usr/lib64/libtbb.so
 /usr/lib64/libtbbmalloc.so
 /usr/lib64/libtbbmalloc_proxy.so
