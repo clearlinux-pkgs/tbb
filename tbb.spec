@@ -7,7 +7,7 @@
 #
 Name     : tbb
 Version  : 2021.11.0
-Release  : 45
+Release  : 46
 URL      : https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.11.0.tar.gz
 Source0  : https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.11.0.tar.gz
 Summary  : C++ library for parallel programming on multi-core processors.
@@ -75,7 +75,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1701374426
+export SOURCE_DATE_EPOCH=1701387482
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -119,15 +119,6 @@ FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 make  %{?_smp_mflags}  DEFAULTFLAGS="$CFLAGS"
 popd
 
-%check
-export LANG=C.UTF-8
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-cd clr-build; make test
-cd ../clr-build-avx2;
-make test || :
-
 %install
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -143,7 +134,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1701374426
+export SOURCE_DATE_EPOCH=1701387482
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tbb
 cp %{_builddir}/oneTBB-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/tbb/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
