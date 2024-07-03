@@ -1,5 +1,5 @@
 PKG_NAME := tbb
-URL = https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.11.0.tar.gz
+URL = https://github.com/oneapi-src/oneTBB/archive/v2021.13.0/oneTBB-2021.13.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
